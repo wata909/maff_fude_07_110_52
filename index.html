@@ -34,7 +34,7 @@ var map = L.map('map',{
     minZoom: 12,
     maxZoom: 18,
     autoZIndex: false,
-}).setView([31.5992, 130.5571], 12) 
+}).setView([31.5822, 130.5409], 15) 
 var hash = new L.Hash(map)
 map.addControl( new L.Control.Gps() )
 
@@ -119,21 +119,21 @@ var mvtSource = new L.TileLayer.MVTSource({
 
 var pale = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',
             {zIndex: 1, attribution: "<a href='http://portal.cyberjapan.jp/help/termsofuse.html' target='_blank'>地理院タイル　淡色地図</a>",
-            maxZoom: 18});
+            maxZoom: 18}).addTo(map);
 
-var seamless = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', 
-            {zIndex: 2, attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル　全国最新写真（シームレス）・全国ランドサットモザイク画像</a>",
+var kagoshima20190704 = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/20190704_kagoshima_chuou_0704do/{z}/{x}/{y}.png', 
+            {zIndex: 2, attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル　令和元年度6月下旬からの大雨 正射画像 鹿児島中央地区（鹿児島県鹿児島市、日置市、南九州市）（2019年7月4日撮影）</a>",
             maxZoom: 18
             }).addTo(map);
 
 map.addLayer(mvtSource);
 
 var baseMaps = {
-    "全国最新写真"   :seamless,
     "淡色地図" : pale
     };      
 
 var overlayMaps = {
+    "全国最新写真"   :kagoshima20190704,
     "筆ポリゴン" : mvtSource
     };
 
